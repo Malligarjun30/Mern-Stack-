@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style1.css">
+    <script src="https://kit.fontawesome.com/226f236af4.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <label id="body">
+        <div id="head">
+            <h1>Calculator</h1>
+            <ul id="me">
+                <li><a href="#std">Standard</a></li>
+                <li><a href="#sci">Scientific</a></li>
+            </ul>
+        </div>
+    </label>
+    <!--------------------------------------Standard Calculator-------------------------------------------->
+    <div id="header">
+        <div id="std">
+            <div class="formstyle">
+                <form name="form1">
+                    <input id="calc" type="text" name="answer"> <br> <br>
+                    <div id="one">
+                        <input type="button" value="C" onclick="clearDisplay()" id="clear">
+                        <input type="button" value="/" onclick="addToDisplay('/')">
+                        <input type="button" value="^" onclick="addToDisplay('^')">
+                        <input type="button" value="b" onclick="back()" id="backspace"> <br>
+                        <input type="button" value="1" onclick="addToDisplay('1')">
+                        <input type="button" value="2" onclick="addToDisplay('2')">
+                        <input type="button" value="3" onclick="addToDisplay('3')">
+                        <input type="button" value="+" onclick="addToDisplay('+')"> <br>
+                        <input type="button" value="4" onclick="addToDisplay('4')">
+                        <input type="button" value="5" onclick="addToDisplay('5')">
+                        <input type="button" value="6" onclick="addToDisplay('6')">
+                        <input type="button" value="-" onclick="addToDisplay('-')"> <br>
+                        <input type="button" value="7" onclick="addToDisplay('7')">
+                        <input type="button" value="8" onclick="addToDisplay('8')">
+                        <input type="button" value="9" onclick="addToDisplay('9')">
+                        <input type="button" value="*" onclick="addToDisplay('*')"> <br>
+                        <input type="button" value="%" onclick="addToDisplay('%')">
+                        <input type="button" value="0" onclick="addToDisplay('0')">
+                        <input type="button" value="." onclick="addToDisplay('.')">
+                        <input type="button" value="=" onclick="calculate()" id="equals">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function addToDisplay(value) {
+            document.getElementById("calc").value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById("calc").value = '';
+        }
+
+        function calculate() {
+            var display = document.getElementById("calc");
+            try {
+                display.value = eval(display.value);
+            } catch (error) {
+                display.value = 'Error';
+            }
+        }
+
+        function back() {
+            var txt = document.getElementById("calc").value;
+            pm = txt.slice(0, -1);
+            document.getElementById("calc").value = pm;
+        }
+
+        document.addEventListener('keydown', function (event) {
+            const key = event.key;
+            if (key >= '0' && key <= '9') {
+                addToDisplay(key);
+            } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+                addToDisplay(key);
+            } else if (key === '^') {
+                addToDisplay('^');
+            } else if (key === '%' || key === '.') {
+                addToDisplay(key);
+            } else if (key === 'Enter') {
+                calculate();
+            } else if (key === 'Escape') {
+                clearDisplay();
+            } else if (key === 'Backspace') {
+                back();
+            }
+        })
+        var sidemenu = document.getElementById("sidemenu");
+        function openmenu() {
+            sidemenu.style.right = "0";
+        }
+        function closemenu() {
+            sidemenu.style.right = "-200px";
+        };
+    </script>
+    <!-----------------------------------Scientific Calculator------------------------------------------>
+    <div id="sci">
+        <div class="calculator">
+            <div class="results">
+                <input class="input" v-model="current" />
+            </div>
+            <div class="mode">
+                <button class="button" @click="press">sin</button>
+                <button class="button" @click="press">cos</button>
+                <button class="button" @click="press">tan</button>
+                <button class="button" @click="press">x^</button>
+                <button class="button" @click="press">&#60;=</button>
+                <button class="button" @click="press">C</button>
+                <button class="button" @click="press">log</button>
+                <button class="button" @click="press">ln</button>
+                <button class="button" @click="press">e</button>
+                <button class="button" @click="press">∘</button>
+                <button class="button" @click="press">rad</button>
+                <button class="button" @click="press">√</button>
+                <button class="button" @click="press">7</button>
+                <button class="button" @click="press">8 </button>
+                <button class="button" @click="press">9</button>
+                <button class="button" @click="press">/</button>
+                <button class="button" @click="press">x ²</button>
+                <button class="button" @click="press">x !</button>
+                <button class="button" @click="press">4</button>
+                <button class="button" @click="press">5</button>
+                <button class="button" @click="press">6</button>
+                <button class="button" @click="press">*</button>
+                <button class="button" @click="press">(</button>
+                <button class="button" @click="press">)</button>
+                <button class="button" @click="press">1</button>
+                <button class="button" @click="press">2</button>
+                <button class="button" @click="press">3</button>
+                <button class="button" @click="press">-</button>
+                <button class="button" @click="press">%</button>
+                <button class="button" @click="press">±</button>
+                <button class="button" @click="press">0</button>
+                <button class="button" @click="press">.</button>
+                <button class="button" @click="press">&#x003C0;</button>
+                <button class="button" @click="press">+</button>
+                <button class="button equal-sign" @click="press">=</button>
+            </div>
+        </div>
+    </div>
+    <!-- partial -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js'></script>
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
