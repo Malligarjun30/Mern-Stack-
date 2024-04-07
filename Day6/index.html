@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Contact Form</title>
+</head>
+
+<body>
+    <div class="forms">
+        <form action="" class="contact-left" id="contactform">
+            <div class="contact-left-title">
+                <h1>Get in touch</h1>
+                <hr>
+            </div>
+            <input type="text" id="name" name="Name" placeholder="Your Name" class="contact-input" required>
+            <input type="email" id="email" name="Email" placeholder="Your email" class="contact-input" required>
+            <input type="text" id="department" name="Department" placeholder="Department" class="contact-input" required>
+            <textarea name="Message" id="message" placeholder="Your Message" class="contact-input"></textarea>
+            <button type="button" id="submitBtn" >Submit</button>
+        </form>
+        <div class="contact-right">
+            <img src="images/Contact us-amico.png" alt="">
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <h4 id="msg">Message Submitted Sucessfully!</h4><br>
+            <h2>Contact Form Details</h2><br>
+            <p><strong>Name:</strong> <span id="modalName"></span></p>
+            <p><strong>Email:</strong> <span id="modalEmail"></span></p>
+            <p><strong>Department:</strong> <span id="modalDepartment"></span></p>
+            <p><strong>Message:</strong> <span id="modalMessage"></span></p>
+            <button class="close" id="closebtn">Close</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById("submitBtn").addEventListener("click", function () {
+
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var department= document.getElementById("department").value;
+            var message = document.getElementById("message").value;
+            
+            document.getElementById("modalName").innerText = name;
+            document.getElementById("modalEmail").innerText = email;
+            document.getElementById("modalDepartment").innerText = department;
+            document.getElementById("modalMessage").innerText = message;
+            
+            document.getElementById("myModal").style.display = "block";
+        });
+
+        
+        document.getElementById("closebtn").addEventListener("click", function () {
+            document.getElementById("myModal").style.display = "none";
+            document.getElementById("contactform").reset();
+        });
+
+        window.onclick = function (event) {
+            if (event.target == document.getElementById("myModal")) {
+                document.getElementById("myModal").style.display = "none";
+            }
+        };
+    </script>
+</body>
+
+</html>
